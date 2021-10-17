@@ -10,9 +10,7 @@ const userRoutes = require("./api/routes/users");
 
 mongoose
   .connect(
-    "mongodb+srv://wojtas:" +
-      process.env.MONGO_ATLAS_PW +
-      "@hackaton.vgtr5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    "mongodb+srv://wojtas:bason@hackaton.vgtr5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("connected");

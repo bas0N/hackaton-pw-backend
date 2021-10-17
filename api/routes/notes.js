@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const Note = require("../models/note");
 
-router.get("/", checkAuth, (req, res, next) => {
+router.get("/", (req, res, next) => {
   const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
   Note.find({ userId: decoded.userId })
     .exec()
@@ -27,7 +27,7 @@ router.get("/", checkAuth, (req, res, next) => {
     });
 });
 
-router.post("/", checkAuth, (req, res, next) => {
+router.post("/", (req, res, next) => {
   const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
   const note = new Note({
     _id: new mongoose.Types.ObjectId(),
