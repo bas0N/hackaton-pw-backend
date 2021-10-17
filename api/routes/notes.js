@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const Note = require("../models/note");
 
 router.get("/", (req, res, next) => {
-  const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
+  const decoded = jwt.verify(req.body.token, "secret");
   Note.find({ userId: decoded.userId })
     .exec()
     .then((docs) => {
@@ -28,7 +28,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
+  const decoded = jwt.verify(req.body.token, "secret");
   const note = new Note({
     _id: new mongoose.Types.ObjectId(),
     userId: decoded.userId,
