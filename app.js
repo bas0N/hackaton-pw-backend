@@ -8,11 +8,18 @@ const mongoose = require("mongoose");
 const noteRoutes = require("./api/routes/notes");
 const userRoutes = require("./api/routes/users");
 
-mongoose.connect(
-  "mongodb+srv://wojtas:" +
-    process.env.MONGO_ATLAS_PW +
-    "@hackaton.vgtr5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-);
+mongoose
+  .connect(
+    "mongodb+srv://wojtas:" +
+      process.env.MONGO_ATLAS_PW +
+      "@hackaton.vgtr5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    console.log("connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
